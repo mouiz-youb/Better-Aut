@@ -1,13 +1,33 @@
 "use client"
 import React ,{useState} from 'react'
-
+import {authClient} from 'Lib/Auth-Client'
 function page() {
   const [username, setUserName] = useState("")
   const [email, setEmail] = useState("")
   const [password , setPassword] = useState("")
+  const Signup = async (e: React.FormEvent)=>{
+    e.preventDefault()
+    const response = await authClient.signUp.email({
+      name: username,
+      email: email,
+      password: password
+    },{
+      onRequest:()=>{
+        console.log('onRequest')
+      },
+      onSuccess: (data)=>{
+        console.log(data)
+      },
+      onError: (error)=>{
+        console.log(error)
+      }
+    }
+      );
+    
+  }
   return (
     <div className='w-screen  h-screen  flex justify-center items-center'>
-      <form action="" className='flex justify-between items-center flex-col gap-5 border-2 rounded-xl  w-1/2 h-1/2 p-5'>
+      <form onSubmit={Signup} action="" className='flex justify-between items-center flex-col gap-5 border-2 rounded-xl  w-1/2 h-1/2 p-5'>
       <h1>Sign up</h1>
      <div className='flex flex-col justify-center items-center gap-5 '>
      <input onChange={(e)=>setUserName(e.target.value)} className='p-2 shadow-xl rounded-xl' type="text" placeholder='Enter The Username ' />
