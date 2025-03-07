@@ -8,6 +8,7 @@ import { createCaller, type AppRouter } from "@/server/api/root";
 import { createTRPCContext } from "@/server/api/trpc";
 import { createQueryClient } from "./query-client";
 
+import { auth } from "Lib/Auth";
 /**
  * This wraps the `createTRPCContext` helper and provides the required context for the tRPC API when
  * handling a tRPC call from a React Server Component.
@@ -28,3 +29,9 @@ export const { trpc: api, HydrateClient } = createHydrationHelpers<AppRouter>(
   caller,
   getQueryClient
 );
+const someAuthenticatedAction = async () => {
+  "use server";
+  const session = await auth.api.getSession({
+      headers: await headers()
+  })
+};

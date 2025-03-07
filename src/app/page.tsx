@@ -15,8 +15,8 @@ function page() {
       onRequest:()=>{
         console.log('onRequest')
       },
-      onSuccess: (data)=>{
-        console.log(data)
+      onSuccess: ()=>{
+        console.log(response.data)
       },
       onError: (error)=>{
         console.log(error)
