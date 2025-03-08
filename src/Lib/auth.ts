@@ -5,11 +5,12 @@ import {Schema} from "@/SchemaX";
 const prisma = new PrismaClient();
 export const auth = betterAuth({
     database: prismaAdapter(prisma, {
-        provider: "sqlite", // the provider of your database
-        // schema: Schema // the schema of your database        
+        provider:"sqlite",
+        // schema :Schema
     }),
     emailAndPassword: {  
         enabled: true
     },
     
 });
+// provider: "sqlite", // the provider of your database

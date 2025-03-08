@@ -6,30 +6,33 @@ function page() {
   const [username, setUserName] = useState("")
   const [email, setEmail] = useState("")
   const [password , setPassword] = useState("")
-  const Signup = async (e: React.FormEvent)=>{
-    e.preventDefault()
-    const response = await authClient.signUp.email({
-      name: username,
-      email: email,
-      password: password
-    },{
-      onRequest:()=>{
-        console.log('onRequest')
-      },
-      onSuccess: ()=>{
-        console.log(response.data)
-      },
-      onError: (error)=>{
-        console.log(error)
-      }
-    }
-      );
+  // const Signup = async (e: React.FormEvent)=>{
+  //   e.preventDefault()
+  //   const response = await authClient.signUp.email({
+  //     name: username,
+  //     email: email,
+  //     password: password
+  //   },{
+  //     onRequest:()=>{
+  //       console.log('onRequest')
+  //     },
+  //     onSuccess: ()=>{
+  //       console.log(response.data)
+  //     },
+  //     onError: (error)=>{
+  //       console.log(error)
+  //     }
+  //   }
+  //     );
     
-  }
+  // }
   return (
    <div className='flex justify-center items-center gap-5  '>
     <button className='p-3 shadow-xl text-center rounded-xl' onClick={signIn}>sign In </button>
     <button className='p-3 shadow-xl text-center rounded-xl' onClick={signUp}>sign up</button>
+    {/* <h1>
+      hello 
+    </h1> */}
    </div>
   )
 }
