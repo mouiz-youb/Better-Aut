@@ -1,6 +1,6 @@
 "use client"
 import React ,{useState} from 'react'
-import {authClient} from 'Lib/Auth-Client'
+import {authClient} from '@/Lib/Auth-Client'
 function page() {
   const [username, setUserName] = useState("")
   const [email, setEmail] = useState("")
