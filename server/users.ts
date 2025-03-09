@@ -1,7 +1,9 @@
 "use server"
 import { auth } from "@/Lib/auth"
 import { redirect  } from "next/navigation";
+import { db } from "@/server/db";
 // import { signUp } from 'server/users';
+import { headers } from 'next/headers';
 // export const signIn =async()=>{
 //     await auth.api.signInEmail({
 //         body:{
@@ -46,9 +48,14 @@ export const signUp =async (email:string  ,password:string  ,name:string   ):Pro
         password:password,
         name:name,
     }
-    await auth.api.signUpEmail({
-        body:body
+    const response  = await auth.api.signUpEmail({
+        returnHeaders: true,
+        body:body,
+        asResponse: true
     })
+    if(!response){
+        console.log(`the response is empty ${response}`)
+    }
+    console.log(response)
     redirect("/home")
-
 }

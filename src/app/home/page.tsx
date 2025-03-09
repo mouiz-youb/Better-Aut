@@ -1,11 +1,12 @@
 import React from 'react'
-
 function page() {
   return (
-    <div>
-        <h1>
-            wellcome to the first t3 stack project 
-        </h1>
+    <div className='flex justify-center items-center flex-col gap-5 w-screen  '>
+      <div className='flex justify-center items-center flex-col gap-5 '>
+        <p>The username is : username </p>
+        <p>The email is : email </p>
+      </div>
+      <div className='flex justify-center items-center '></div>
     </div>
   )
 }
