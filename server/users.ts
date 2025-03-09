@@ -1,5 +1,6 @@
 "use server"
 import { auth } from "@/Lib/auth"
+import { redirect  } from "next/navigation";
 // import { signUp } from 'server/users';
 // export const signIn =async()=>{
 //     await auth.api.signInEmail({
@@ -32,6 +33,7 @@ export const signIn = async (email: string, password: string): Promise<void> => 
     await auth.api.signInEmail({
         body: body
     });
+    redirect("/home")
 };
 interface  SignUpBody{
     email: string;
@@ -42,10 +44,11 @@ export const signUp =async (email:string  ,password:string  ,name:string   ):Pro
     const body:SignUpBody={
         email:email,
         password:password,
-        name:name
-
+        name:name,
     }
     await auth.api.signUpEmail({
         body:body
     })
+    redirect("/home")
+
 }
