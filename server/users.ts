@@ -32,10 +32,19 @@ export const signIn = async (email: string, password: string): Promise<void> => 
         email: email,
         password: password
     };
-    await auth.api.signInEmail({
-        body: body
+    const response = await auth.api.signInEmail({
+        body: body,
+        asResposnse :true
     });
-    redirect("/home")
+    const responseBody = response.user
+    const token = response.token
+    console.log(`the user data is ${responseBody}`)
+    console.log(`the user email is ${responseBody.email}`)
+    console.log(`the user name  is ${responseBody.name }`)
+    console.log(`the user id is ${responseBody.id}`)
+
+    console.log(`the token  is ${token }`)
+    // redirect("/home")
 };
 interface  SignUpBody{
     email: string;
@@ -59,6 +68,11 @@ export const signUp =async (email:string  ,password:string  ,name:string   ):Pro
      console.log("Response Body:", response.body);
      // Parse the response body as JSON
     const responseBody = await response.json(); // Parse the ReadableStream
+    const token = responseBody.token 
+    const user  = responseBody.user
+    console.log(`the token is : ${token }`)
+    console.log(`The user is data: ${JSON.stringify(user, null, 2)}`);
+    console.log(`the user  is : ${user  }`)
     console.log("Response Body:", responseBody);
     // redirect("/home")
 }
