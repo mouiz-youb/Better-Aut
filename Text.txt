@@ -1,0 +1,13 @@
+// console.log(`the token is : ${token }`)
+// console.log(`The user is data: ${JSON.stringify(user, null, 2)}`);
+// console.log(`the user email  is : ${user.email  } and the user name is :${user.name }`)
+// console.log("Response Body:", responseBody);
+// console.log("Response Status:", response.status);
+//      console.log("Response Headers:", response.headers);
+//      console.log("Response Body:", response.body);
+// console.log(`the user data is ${responseBody}`)
+// console.log(`the user email is ${responseBody.email}`)
+// console.log(`the user name  is ${responseBody.name }`)
+// console.log(`the user id is ${responseBody.id}`)
+
+// console.log(`the token  is ${token }`)
