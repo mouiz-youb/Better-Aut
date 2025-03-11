@@ -1,13 +1,20 @@
 "use client"
 import React ,{useState} from 'react'
 import { signIn  } from 'server/users'
+import { useRouter } from 'next/navigation'
 function SignIn() {
     const [email, setEmail] = useState("")
     const [password , setPassword] = useState("")
+    const router = useRouter()
     const   hendleSubmit =async (e:React.FormEvent)=>{
       e.preventDefault()
       try {
-        await signIn(email,password )
+        const {token ,user }= await signIn(email,password )
+        if (typeof window !== "undefined") {
+          localStorage.setItem("token", token); // Store the token
+          localStorage.setItem("user", JSON.stringify(user)); // Store the user object as a string
+        }
+        router.push("/home");
       } catch (error) {
         console.log(`Error during sign-up :${error}`)
       }

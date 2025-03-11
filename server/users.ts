@@ -27,19 +27,23 @@ interface SignInBody {
     password: string;
 }
 
-export const signIn = async (email: string, password: string): Promise<void> => {
+export const signIn = async (email: string, password: string): Promise<{token:any , user :any}> => {
     const body: SignInBody = {
         email: email,
         password: password
     };
+   try {
     const response = await auth.api.signInEmail({
         body: body,
         asResposnse :true
     });
     const responseBody = response.user
     const token = response.token
-
-    // redirect("/home")
+    return {token , user:responseBody};
+   } catch (error) {
+    console.log(`Sign In error ${error }`)
+    throw error 
+   }
 };
 interface  SignUpBody{
     email: string;
