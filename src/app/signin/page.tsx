@@ -2,6 +2,7 @@
 import React ,{useState} from 'react'
 import { signIn  } from 'server/users'
 import { useRouter } from 'next/navigation'
+
 function SignIn() {
     const [email, setEmail] = useState("")
     const [password , setPassword] = useState("")
@@ -35,7 +36,7 @@ function SignIn() {
 </div> 
     {/* <button className='p-3 shadow-xl text-center rounded-xl' onClick={signIn}>sign In </button>
     <button className='p-3 shadow-xl text-center rounded-xl' onClick={signUp}>sign up</button> */}
-   
+    
    </div>
   )
 }

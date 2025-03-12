@@ -4,6 +4,7 @@ import { redirect  } from "next/navigation";
 import { db } from "@/server/db";
 // import { signUp } from 'server/users';
 import { headers } from 'next/headers';
+import toast from "react-hot-toast";
 // export const signIn =async()=>{
 //     await auth.api.signInEmail({
 //         body:{
@@ -79,8 +80,16 @@ export const signUp =async (email:string  ,password:string  ,name:string   ):Pro
         throw error
     }
 }
-// const x =async()=>{
-//     await auth.api.getSession({
-//         headers: headers()
-//     })
-// }
+export const getSession =async  ():Promise <{session:any} | undefined>=>{
+  try {
+    const response = await auth.api.getSession({
+        headers: await headers() //some endpoint might require headers
+    })
+    const session = response?.session
+    return {session}
+  } catch (error) {
+    console.log(error)
+    return undefined
+  }
+
+}

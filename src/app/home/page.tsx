@@ -1,33 +1,20 @@
-"use client"
 import React from 'react'
-import { db } from '@/server/db'
+import Link from 'next/link'
 import { auth } from '@/Lib/auth'
-import { useRouter } from 'next/navigation'
-import { useLocalStorage } from '@/hook/useLocalStorage '
-import {toast} from "react-hot-toast"
-function page() {
-  const {user ,token } = useLocalStorage()
-  const router = useRouter()
-  
-  const signOut =async ()=>{
-    
-    
-   
-  }
+import { headers } from 'next/headers'
+import {getSession} from "server/users"
+import SessionWrapper from '../_components/SessionWrapper'
+ function page() {
+  const session = getSession()
+  console.log(`the session from home ${session}`)
   return (
     <div className='flex justify-center items-center flex-col gap-5 w-screen  '>
       <div className='flex justify-center items-center flex-col gap-5 '>
-      {token && user ? (
-        <div>
-          <p>Hello, {user.name}!</p>
-          <p>Your token: {token}</p>
-        </div>
-      ) : (
-        <p>Please log in to access the home page.</p>
-      )}
+      <SessionWrapper/>
+      <div className='flex justify-center items-center  gap-5'>
+      <Link className='p-3 shadow-xl rounded-xl bg-blue-900 text-white'  href="/">Signup</Link>
+      <Link className='p-3 shadow-xl rounded-xl bg-blue-900 text-white'  href="/signin">Sign in</Link>
       </div>
-      <div className='flex justify-center items-center '>
-        <button onClick={signOut} className='flex justify-center items-center p-3 rounded-xl shadow-xl'>Sign out</button>
       </div>
     </div>
   )
