@@ -35,9 +35,12 @@ export const signIn = async (email: string, password: string): Promise<{token:an
    try {
     const response = await auth.api.signInEmail({
         body: body,
-        asResposnse :true
+        asResposnse :true,
+        headers: await headers()
     });
+    
     const responseBody = response.user
+    // response.
     const token = response.token
     return {token , user:responseBody};
    } catch (error) {
@@ -76,3 +79,8 @@ export const signUp =async (email:string  ,password:string  ,name:string   ):Pro
         throw error
     }
 }
+// const x =async()=>{
+//     await auth.api.getSession({
+//         headers: headers()
+//     })
+// }
