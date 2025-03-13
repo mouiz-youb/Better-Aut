@@ -15,7 +15,7 @@ function SignIn() {
           localStorage.setItem("token", token); // Store the token
           localStorage.setItem("user", JSON.stringify(user)); // Store the user object as a string
         }
-        router.push("/home");
+        router.push("/signout");
       } catch (error) {
         console.log(`Error during sign-up :${error}`)
       }

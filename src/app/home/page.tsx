@@ -1,19 +1,42 @@
+"use client"
 import React from 'react'
 import Link from 'next/link'
-import { auth } from '@/Lib/auth'
-import { headers } from 'next/headers'
-import {getSession} from "server/users"
 import SessionWrapper from '../_components/SessionWrapper'
+import { auth } from '@/Lib/auth'
+import toast from 'react-hot-toast'
  function page() {
-  const session = getSession()
-  console.log(`the session from home ${session}`)
+  const signout = async ()=>{
+   try {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("No token found");
+      return;
+    }
+    const response = await auth.api.signOut({
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    })
+    if(response.success === true){
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      toast.success(`You are sign out seccessefuly`)
+    }else{
+      toast.error(`You are sign out failed`)
+    }
+   } catch (error) {
+    console.error(error);
+    toast.error(String(error))
+   }
+  }
   return (
     <div className='flex justify-center items-center flex-col gap-5 w-screen  '>
       <div className='flex justify-center items-center flex-col gap-5 '>
-      <SessionWrapper/>
+      {/* <SessionWrapper/> */}
       <div className='flex justify-center items-center  gap-5'>
       <Link className='p-3 shadow-xl rounded-xl bg-blue-900 text-white'  href="/">Signup</Link>
       <Link className='p-3 shadow-xl rounded-xl bg-blue-900 text-white'  href="/signin">Sign in</Link>
+      {/* <button className='p-3 shadow-xl rounded-xl bg-blue-900 text-white' onClick={signout} >Sign out</button> */}
       </div>
       </div>
     </div>

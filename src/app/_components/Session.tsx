@@ -13,7 +13,7 @@ export default function Session({ session }: SessionProps) {
       {!session ? (
         <p>The user is not authenticated</p>
       ) : (
-        <p>{session.user.name}</p>
+        <p className='flex justify-center items-center text-3xl text-blue-500'>Welcome Mr :{session.user.name}</p>
       )}
     </div>
   );
